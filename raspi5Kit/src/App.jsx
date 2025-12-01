@@ -75,7 +75,6 @@ const App = () => {
       case 'settings':
         setShowSettings(true);
         addTerminalLine('Opening settings panel...', 'success');
-        break;minalLine(`GPIO Control ${!showGPIO ? 'ENABLED' : 'DISABLED'}`, 'success');
         break;
       
       case 'clear':
