@@ -1,0 +1,86 @@
+/* Header - Mobile First */
+.header {
+  background: linear-gradient(180deg, var(--panel-bg) 0%, var(--dark-bg) 100%);
+  border-bottom: 2px solid var(--border-green);
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: env(safe-area-inset-top) 0 0 0;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-icon {
+  font-size: 1.8rem;
+  filter: drop-shadow(0 0 5px var(--primary-green));
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: var(--primary-green);
+  text-shadow: 0 0 10px var(--primary-green);
+}
+
+.install-btn {
+  background: transparent;
+  color: var(--primary-green);
+  border: 2px solid var(--primary-green);
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-shadow: 0 0 5px var(--primary-green);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+  transition: all 0.3s ease;
+  min-width: 80px;
+  touch-action: manipulation;
+}
+
+.install-btn:active {
+  background: var(--primary-green);
+  color: var(--dark-bg);
+  transform: scale(0.95);
+}
+
+.header-line {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--primary-green) 50%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px var(--primary-green);
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .header-content {
+    padding: 1.5rem 2rem;
+  }
+
+  .logo h1 {
+    font-size: 2rem;
+  }
+
+  .install-btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+  }
+}

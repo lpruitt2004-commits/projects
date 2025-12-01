@@ -1,0 +1,26 @@
+/* Action Panel - Mobile First */
+.action-panel {
+  background: var(--panel-bg);
+  border: 2px solid var(--border-green);
+  padding: 1rem;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+}
+
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .action-panel {
+    padding: 1.5rem;
+  }
+
+  .action-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+}

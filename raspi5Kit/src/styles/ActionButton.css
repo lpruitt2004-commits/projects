@@ -1,0 +1,77 @@
+/* Action Button - Mobile First */
+.action-button {
+  background: transparent;
+  border: 2px solid var(--primary-green);
+  color: var(--primary-green);
+  padding: 1.5rem 1rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+  min-height: 100px;
+  touch-action: manipulation;
+}
+
+.action-button__scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 255, 65, 0.1) 50%,
+    transparent 100%
+  );
+  animation: scan 2s linear infinite;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.action-button:active {
+  background: var(--primary-green);
+  color: var(--dark-bg);
+  transform: scale(0.95);
+  box-shadow: 0 0 20px var(--primary-green);
+}
+
+.action-button:active .action-button__scanline {
+  opacity: 1;
+}
+
+.action-button__icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 0 5px var(--primary-green));
+}
+
+.action-button__label {
+  text-transform: uppercase;
+  text-shadow: 0 0 5px var(--primary-green);
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .action-button {
+    padding: 2rem 1rem;
+    min-height: 120px;
+  }
+
+  .action-button__icon {
+    font-size: 2.5rem;
+  }
+
+  .action-button__label {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Icon Placeholder Generator</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      text-align: center;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    canvas {
+      border: 2px solid #c51a4a;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+    button {
+      background: #c51a4a;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin: 0.5rem;
+    }
+    button:hover {
+      background: #a01639;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>RPi5 Kit Icon Generator</h1>
+    <p>Generate placeholder icons for your PWA</p>
+    <canvas id="iconCanvas" width="512" height="512"></canvas>
+    <br>
+    <button onclick="generateIcon()">Generate Icon</button>
+    <button onclick="downloadIcon()">Download 512x512</button>
+    <p style="font-size: 0.9rem; color: #666;">
+      After downloading, use generate-icons.sh to create all sizes
+    </p>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('iconCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function generateIcon() {
+      // Background circle
+      ctx.fillStyle = '#c51a4a';
+      ctx.beginPath();
+      ctx.arc(256, 256, 240, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Inner circle
+      ctx.fillStyle = '#a01639';
+      ctx.beginPath();
+      ctx.arc(256, 256, 180, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Center icon - Raspberry Pi symbol (simplified)
+      ctx.fillStyle = 'white';
+      ctx.font = 'bold 200px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('π', 256, 256);
+
+      // Text
+      ctx.font = 'bold 48px Arial';
+      ctx.fillText('RPi5', 256, 400);
+    }
+
+    function downloadIcon() {
+      const link = document.createElement('a');
+      link.download = 'icon-512x512.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    }
+
+    // Generate on load
+    generateIcon();
+  </script>
+</body>
+</html>

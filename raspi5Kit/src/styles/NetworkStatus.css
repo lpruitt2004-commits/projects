@@ -1,0 +1,67 @@
+/* Network Status - Mobile First */
+.network-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: var(--panel-bg);
+  border: 2px solid var(--border-green);
+  padding: 1rem;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+  margin-top: 1rem;
+}
+
+.network-status__indicator {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.network-status__indicator--online {
+  background: var(--success-green);
+  box-shadow: 0 0 10px var(--success-green),
+              0 0 20px var(--success-green);
+}
+
+.network-status__indicator--offline {
+  background: var(--error-red);
+  box-shadow: 0 0 10px var(--error-red),
+              0 0 20px var(--error-red);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.2);
+  }
+}
+
+.network-status__text {
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: var(--primary-green);
+  text-shadow: 0 0 5px var(--primary-green);
+  text-transform: uppercase;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .network-status {
+    padding: 1.25rem;
+  }
+
+  .network-status__indicator {
+    width: 18px;
+    height: 18px;
+  }
+
+  .network-status__text {
+    font-size: 1rem;
+  }
+}

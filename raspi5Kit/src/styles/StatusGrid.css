@@ -1,0 +1,21 @@
+/* Status Grid - Mobile First */
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .status-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .status-grid {
+    gap: 2rem;
+  }
+}

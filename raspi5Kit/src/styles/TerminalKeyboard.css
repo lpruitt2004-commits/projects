@@ -1,0 +1,90 @@
+/* Terminal Keyboard - Mobile First Touch Interface */
+.terminal-keyboard {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--dark-bg);
+  padding: 0.75rem;
+  border: 2px solid var(--border-green);
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+}
+
+.terminal-keyboard__row {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.terminal-keyboard__key {
+  background: var(--panel-bg);
+  border: 2px solid var(--primary-green);
+  color: var(--primary-green);
+  padding: 0.75rem;
+  min-width: 40px;
+  height: 50px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.2);
+  text-shadow: 0 0 3px var(--primary-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.terminal-keyboard__key--wide {
+  min-width: 80px;
+  flex: 1;
+  max-width: 120px;
+}
+
+.terminal-keyboard__key:active {
+  background: var(--primary-green);
+  color: var(--dark-bg);
+  transform: scale(0.95);
+  box-shadow: 0 0 20px var(--primary-green),
+              inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Prevent text selection on rapid taps */
+.terminal-keyboard__key::selection {
+  background: transparent;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .terminal-keyboard {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .terminal-keyboard__row {
+    gap: 0.75rem;
+  }
+
+  .terminal-keyboard__key {
+    padding: 1rem;
+    min-width: 50px;
+    height: 60px;
+    font-size: 0.95rem;
+  }
+
+  .terminal-keyboard__key--wide {
+    min-width: 100px;
+    max-width: 150px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .terminal-keyboard__key {
+    min-width: 60px;
+    height: 65px;
+    font-size: 1rem;
+  }
+}

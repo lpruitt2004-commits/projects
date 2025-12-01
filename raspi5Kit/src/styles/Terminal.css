@@ -1,0 +1,129 @@
+/* Terminal - Mobile First Fallout 76 Style */
+.terminal-section {
+  background: var(--panel-bg);
+  border: 2px solid var(--border-green);
+  padding: 1rem;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+}
+
+.terminal {
+  background: #000000;
+  border: 2px solid var(--primary-green);
+  padding: 1rem;
+  min-height: 250px;
+  max-height: 350px;
+  overflow-y: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  position: relative;
+  box-shadow: inset 0 0 20px rgba(0, 255, 65, 0.1);
+}
+
+.terminal__scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 255, 65, 0.05) 0px,
+    rgba(0, 255, 65, 0.05) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.terminal__line {
+  margin-bottom: 0.25rem;
+  position: relative;
+  z-index: 2;
+}
+
+.terminal__line--system {
+  color: var(--primary-green);
+  text-shadow: 0 0 5px var(--primary-green);
+  font-weight: bold;
+}
+
+.terminal__line--command {
+  color: #00ccff;
+  text-shadow: 0 0 5px #00ccff;
+}
+
+.terminal__line--output {
+  color: var(--secondary-green);
+}
+
+.terminal__line--success {
+  color: var(--success-green);
+  text-shadow: 0 0 3px var(--success-green);
+}
+
+.terminal__line--error {
+  color: var(--error-red);
+  text-shadow: 0 0 3px var(--error-red);
+}
+
+.terminal__line--warning {
+  color: var(--warning-amber);
+  text-shadow: 0 0 3px var(--warning-amber);
+}
+
+.terminal__input-line {
+  display: flex;
+  align-items: center;
+  color: var(--primary-green);
+  margin-top: 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.terminal__prompt {
+  margin-right: 0.5rem;
+  font-weight: bold;
+  text-shadow: 0 0 5px var(--primary-green);
+}
+
+.terminal__input {
+  flex: 1;
+  color: var(--primary-green);
+  text-shadow: 0 0 3px var(--primary-green);
+}
+
+.terminal__cursor {
+  color: var(--primary-green);
+  animation: blink 1s step-end infinite;
+  text-shadow: 0 0 8px var(--primary-green);
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .terminal-section {
+    padding: 1.5rem;
+  }
+
+  .terminal {
+    padding: 1.5rem;
+    min-height: 300px;
+    max-height: 400px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .terminal {
+    min-height: 350px;
+    max-height: 500px;
+    font-size: 1rem;
+  }
+}
