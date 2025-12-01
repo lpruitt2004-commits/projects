@@ -1,0 +1,15 @@
+# Ignore node_modules and Python cache
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.DS_Store
+.idea/
+.vscode/
+*.log
+# Ignore system files
+Thumbs.db
+# Ignore all in public-repo (it has its own repo)
+/public-repo/
