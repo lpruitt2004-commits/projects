@@ -6,6 +6,19 @@
   padding-bottom: env(safe-area-inset-bottom);
 }
 
+/* Loading Fallback */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: var(--theme-text);
+  text-shadow: 0 0 10px var(--theme-primary);
+  letter-spacing: 2px;
+  animation: glow-pulse 1.5s ease-in-out infinite;
+}
+
 .main-content {
   flex: 1;
   padding: 1rem;

@@ -1,0 +1,313 @@
+/* Settings Overlay */
+.settings-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 14, 20, 0.95);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+}
+
+.settings-panel {
+  background: var(--panel-bg);
+  border: 2px solid var(--theme-border);
+  box-shadow: 0 0 20px var(--theme-primary), inset 0 0 20px rgba(0, 255, 65, 0.1);
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 4px;
+}
+
+/* Header */
+.settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 2px solid var(--theme-border);
+  background: linear-gradient(180deg, var(--panel-bg) 0%, rgba(15, 20, 25, 0.8) 100%);
+}
+
+.settings-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  color: var(--theme-text);
+}
+
+.close-btn {
+  background: transparent;
+  border: 2px solid var(--theme-border);
+  color: var(--theme-text);
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: 1;
+  padding: 0;
+  transition: all 0.2s;
+}
+
+.close-btn:active {
+  transform: scale(0.9);
+  box-shadow: 0 0 10px var(--theme-primary);
+}
+
+/* Content */
+.settings-content {
+  padding: 1.5rem;
+}
+
+.setting-group {
+  margin-bottom: 2rem;
+}
+
+.setting-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--theme-text);
+  letter-spacing: 2px;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 0 5px var(--theme-primary);
+}
+
+/* Theme Options */
+.theme-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.theme-btn {
+  background: var(--dark-bg);
+  border: 2px solid currentColor;
+  color: var(--theme-text);
+  padding: 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-shadow: 0 0 5px currentColor;
+}
+
+.theme-btn:active {
+  transform: scale(0.95);
+}
+
+.theme-btn.active {
+  background: currentColor;
+  color: var(--dark-bg);
+  text-shadow: none;
+  box-shadow: 0 0 15px currentColor;
+}
+
+/* Range Slider */
+.range-slider {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--dark-bg);
+  border: 1px solid var(--theme-border);
+  outline: none;
+  -webkit-appearance: none;
+  pointer-events: auto;
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--theme-primary);
+  border: 2px solid var(--theme-border);
+  cursor: pointer;
+  box-shadow: 0 0 10px var(--theme-primary);
+}
+
+.range-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--theme-primary);
+  border: 2px solid var(--theme-border);
+  cursor: pointer;
+  box-shadow: 0 0 10px var(--theme-primary);
+}
+
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--theme-text-dim);
+}
+
+/* Radio Group */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: var(--dark-bg);
+  border: 2px solid var(--theme-border);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+}
+
+.radio-option input[type="radio"] {
+  margin-right: 1rem;
+  width: 20px;
+  height: 20px;
+  accent-color: var(--theme-primary);
+  pointer-events: auto;
+}
+
+.radio-option.active {
+  background: rgba(0, 255, 65, 0.1);
+  box-shadow: 0 0 10px var(--theme-primary);
+}
+
+/* Toggle Switch */
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.toggle-switch input[type="checkbox"] {
+  display: none;
+}
+
+.toggle-slider {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background: var(--dark-bg);
+  border: 2px solid var(--theme-border);
+  border-radius: 15px;
+  transition: all 0.3s;
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  background: var(--theme-text-dim);
+  border-radius: 50%;
+  transition: all 0.3s;
+  box-shadow: 0 0 5px var(--theme-primary);
+}
+
+input[type="checkbox"]:checked + .toggle-slider {
+  background: var(--theme-primary);
+}
+
+input[type="checkbox"]:checked + .toggle-slider::before {
+  transform: translateX(30px);
+  background: var(--dark-bg);
+}
+
+.toggle-label {
+  font-size: 0.95rem;
+  color: var(--theme-text);
+  letter-spacing: 1px;
+}
+
+/* Actions */
+.settings-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  flex: 1;
+  min-width: 200px;
+  padding: 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+  border: 2px solid var(--theme-border);
+  transition: all 0.2s;
+}
+
+.reset-btn {
+  background: var(--dark-bg);
+  color: var(--error-red);
+  border-color: var(--error-red);
+}
+
+.reset-btn:active {
+  background: var(--error-red);
+  color: var(--dark-bg);
+  transform: scale(0.98);
+}
+
+.save-btn {
+  background: var(--theme-primary);
+  color: var(--dark-bg);
+  border-color: var(--theme-border);
+  box-shadow: 0 0 15px var(--theme-primary);
+  text-shadow: none;
+}
+
+.save-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 0 25px var(--theme-primary);
+}
+
+/* Footer */
+.settings-footer {
+  padding: 1rem 1.5rem;
+  border-top: 2px solid var(--theme-border);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--theme-text-dim);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .theme-options {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-actions {
+    flex-direction: column;
+  }
+
+  .action-btn {
+    min-width: auto;
+  }
+}
+
+/* Disable animations class */
+.no-animations * {
+  animation: none !important;
+  transition: none !important;
+}

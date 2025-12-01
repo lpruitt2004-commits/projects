@@ -1,5 +1,6 @@
 /* Mobile-First Base Styles - Fallout 76 Inspired */
 :root {
+  /* Default Theme: Classic Green (Fallout 76) */
   --primary-green: #00ff41;
   --secondary-green: #00cc33;
   --dark-bg: #0a0e14;
@@ -11,6 +12,58 @@
   --warning-amber: #ffaa00;
   --success-green: #00ff41;
   --scanline-opacity: 0.05;
+  
+  /* Theme colors */
+  --theme-primary: var(--primary-green);
+  --theme-secondary: var(--secondary-green);
+  --theme-text: var(--text-green);
+  --theme-text-dim: var(--text-dim);
+  --theme-border: var(--border-green);
+}
+
+/* Amber Theme (Fallout 3/New Vegas) */
+[data-theme="amber"] {
+  --primary-green: #ffb000;
+  --secondary-green: #ff8c00;
+  --text-green: #ffb000;
+  --text-dim: #cc8800;
+  --border-green: #ffb000;
+  --success-green: #ffb000;
+  --theme-primary: #ffb000;
+  --theme-secondary: #ff8c00;
+  --theme-text: #ffb000;
+  --theme-text-dim: #cc8800;
+  --theme-border: #ffb000;
+}
+
+/* Blue Theme (Vault-Tec Terminal) */
+[data-theme="blue"] {
+  --primary-green: #00d4ff;
+  --secondary-green: #0099cc;
+  --text-green: #00d4ff;
+  --text-dim: #006699;
+  --border-green: #00d4ff;
+  --success-green: #00d4ff;
+  --theme-primary: #00d4ff;
+  --theme-secondary: #0099cc;
+  --theme-text: #00d4ff;
+  --theme-text-dim: #006699;
+  --theme-border: #00d4ff;
+}
+
+/* Red Theme (Security Terminal) */
+[data-theme="red"] {
+  --primary-green: #ff2a2a;
+  --secondary-green: #cc0000;
+  --text-green: #ff2a2a;
+  --text-dim: #990000;
+  --border-green: #ff2a2a;
+  --success-green: #ff2a2a;
+  --theme-primary: #ff2a2a;
+  --theme-secondary: #cc0000;
+  --theme-text: #ff2a2a;
+  --theme-text-dim: #990000;
+  --theme-border: #ff2a2a;
 }
 
 * {
@@ -134,6 +187,55 @@ body::after {
 
 .touch-active {
   animation: touch-pulse 0.2s ease;
+}
+
+/* Component Transitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--theme-primary), 0 0 10px var(--theme-primary);
+  }
+  50% {
+    box-shadow: 0 0 10px var(--theme-primary), 0 0 20px var(--theme-primary), 0 0 30px var(--theme-primary);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.slide-in {
+  animation: slideIn 0.4s ease-out;
+}
+
+.glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Smooth transitions */
+* {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 }
 
 /* Desktop Overrides */

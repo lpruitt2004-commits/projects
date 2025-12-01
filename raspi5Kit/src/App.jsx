@@ -1,16 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import Header from './components/Header';
 import StatusGrid from './components/StatusGrid';
 import ActionPanel from './components/ActionPanel';
 import Terminal from './components/Terminal';
-import GPIOControl from './components/GPIOControl';
 import NetworkStatus from './components/NetworkStatus';
 import { useSystemStats } from './hooks/useSystemStats';
 import { useNetworkStatus } from './hooks/useNetworkStatus';
 import './styles/App.css';
 
+// Lazy load heavy components for better performance
+const GPIOControl = lazy(() => import('./components/GPIOControl'));
+const Settings = lazy(() => import('./components/Settings'));
+
 const App = () => {
   const [showGPIO, setShowGPIO] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
   const [terminalLines, setTerminalLines] = useState([
     { text: 'ROBCO INDUSTRIES UNIFIED OPERATING SYSTEM', type: 'system' },
     { text: 'COPYRIGHT 2075-2102, ROBCO INDUSTRIES', type: 'system' },
@@ -22,6 +26,19 @@ const App = () => {
 
   const systemStats = useSystemStats();
   const isOnline = useNetworkStatus();
+
+  // Listen for settings changes
+  useEffect(() => {
+    const handleSettingsChange = (e) => {
+      const { pollInterval } = e.detail;
+      if (pollInterval) {
+        addTerminalLine(`Poll interval updated to ${pollInterval / 1000}s`, 'success');
+      }
+    };
+    
+    window.addEventListener('settings-changed', handleSettingsChange);
+    return () => window.removeEventListener('settings-changed', handleSettingsChange);
+  }, []);
 
   const addTerminalLine = (text, type = 'output') => {
     setTerminalLines(prev => [...prev, { text, type }]);
@@ -38,6 +55,7 @@ const App = () => {
         addTerminalLine('  HELP     - Display available commands', 'output');
         addTerminalLine('  STATUS   - Show system status', 'output');
         addTerminalLine('  GPIO     - Toggle GPIO panel', 'output');
+        addTerminalLine('  SETTINGS - Open settings panel', 'output');
         addTerminalLine('  CLEAR    - Clear terminal', 'output');
         addTerminalLine('  STATS    - Display detailed stats', 'output');
         addTerminalLine('  REBOOT   - Restart system', 'output');
@@ -49,10 +67,15 @@ const App = () => {
         addTerminalLine(`TEMP: ${systemStats.temp}°C`, 'output');
         addTerminalLine(`STORAGE: ${systemStats.storage}% used`, 'output');
         break;
-      
       case 'gpio':
         setShowGPIO(!showGPIO);
         addTerminalLine(`GPIO Control ${!showGPIO ? 'ENABLED' : 'DISABLED'}`, 'success');
+        break;
+      
+      case 'settings':
+        setShowSettings(true);
+        addTerminalLine('Opening settings panel...', 'success');
+        break;minalLine(`GPIO Control ${!showGPIO ? 'ENABLED' : 'DISABLED'}`, 'success');
         break;
       
       case 'clear':
@@ -81,7 +104,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <Header />
+      <Header onSettingsClick={() => setShowSettings(true)} />
       
       <main className="main-content">
         <StatusGrid 
@@ -97,13 +120,22 @@ const App = () => {
           onAction={(action) => addTerminalLine(`${action} activated`, 'success')}
         />
         
-        {showGPIO && (
-          <GPIOControl 
-            onPinToggle={(pin, state) => {
-              addTerminalLine(`GPIO ${pin} set to ${state ? 'HIGH' : 'LOW'}`, 'success');
-            }}
-          />
-        )}
+        <Suspense fallback={<div className="loading fade-in">Loading...</div>}>
+          {showGPIO && (
+            <GPIOControl 
+              onPinToggle={(pin, state) => {
+                addTerminalLine(`GPIO ${pin} set to ${state ? 'HIGH' : 'LOW'}`, 'success');
+              }}
+            />
+          )}
+          
+          {showSettings && (
+            <Settings onClose={() => {
+              setShowSettings(false);
+              addTerminalLine('Settings saved', 'success');
+            }} />
+          )}
+        </Suspense>
         
         <Terminal 
           lines={terminalLines}

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../styles/Header.css';
 
-const Header = () => {
+const Header = ({ onSettingsClick }) => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
 
   useState(() => {
@@ -29,11 +29,18 @@ const Header = () => {
           <span className="logo-icon">🥧</span>
           <h1>RPi5 KIT</h1>
         </div>
-        {deferredPrompt && (
-          <button className="install-btn" onClick={handleInstall}>
-            INSTALL
-          </button>
-        )}
+        <div className="header-actions">
+          {onSettingsClick && (
+            <button className="settings-btn" onClick={onSettingsClick} title="Settings">
+              ⚙️
+            </button>
+          )}
+          {deferredPrompt && (
+            <button className="install-btn" onClick={handleInstall}>
+              INSTALL
+            </button>
+          )}
+        </div>
       </div>
       <div className="header-line"></div>
     </header>
